@@ -19,16 +19,27 @@ using std::unordered_map;   using std::unordered_set;
  * If you used any helper functions, just put them above this function.
  */
 unordered_set<string> findWikiLinks(const string& inp) {
-    // TODO: Remove all the code in this function and
-    // fill in with your findWikiLinks code from part A
-
-    errorPrint();
-    errorPrint("If you are seeing this message, you haven't implemented");
-    errorPrint("the find_wiki_links method in wikiscraper.cpp.");
-    errorPrint();
-    cout << endl;
-    return {};
-
+    unordered_set<string> link_set;
+    string start_token = "<a href=\"/wiki/";
+    char end_token = '"';
+    auto start = inp.begin();
+    auto end = inp.end();
+    while (start != end) {
+        string valid_string = "";
+        auto link_start = std::search(start, end, start_token.begin(), start_token.end());
+        if(link_start == end) break;
+        link_start += start_token.length();
+        auto link_end = std::find(link_start, end, end_token);
+        while(link_start != link_end) {
+            valid_string += *link_start;
+            link_start++;
+        }
+        if (std::all_of(valid_string.begin(), valid_string.end(), [](char ch) { return ch != '#' && ch != ':'; })) {
+            link_set.insert(valid_string);
+        }
+        start = link_start;
+    }
+    return link_set;
 }
 
 
