@@ -1080,7 +1080,6 @@ void TestCases::TEST7H_nested_insert() {
  * Verifies basic functionality of emplace
  */
 void TestCases::TEST9A_emplace_basic() {
-    QSKIP("Optional: remove this statement once you've implemented emplace_at_cursor.");
     GapBuffer<std::vector<int>> buf;
     buf.emplace_at_cursor(10, 3);
     QVERIFY(buf[0] == vector<int>(10, 3));
@@ -1094,7 +1093,6 @@ void TestCases::TEST9A_emplace_basic() {
  * Verifies edge case when parameter back is empty.
  */
 void TestCases::TEST9B_edge() {
-    QSKIP("Optional: remove this statement once you've implemented emplace_at_cursor.");
     GapBuffer<std::string> buf;
     buf.emplace_at_cursor();
     QVERIFY(buf.size() == 1);
@@ -1111,7 +1109,6 @@ void TestCases::TEST9B_edge() {
  * While (2) only creates 1 nested vector.
  */
 void TestCases::TEST9C_emplace_time() {
-    QSKIP("Optional: remove this statement once you've implemented emplace_at_cursor.");
     GapBuffer<std::vector<std::vector<int>>> buf;
     vector<int> vec(100000, 3);
     auto start_insert = std::chrono::high_resolution_clock::now();
